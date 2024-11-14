@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predicted Rank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f5;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+            border-radius: 20px;
+            background-color: white;
+            box-shadow: 0px 5px 30px royalblue;
+            position: relative;
+            width: 90%;
+            max-width: 500px;
+            height: 290px;
+        }
+
+        h1 {
+            color: royalblue;
+            font-size: 2.5rem;
+        }
+        p {
+            font-size: 1.5rem;
+            color: #333;
+            margin: 20px 0;
+        }
+        .sarthi-btn {
+            background-color: royalblue;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 10px;
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .sarthi-btn:hover {
+            background-color: #0000CC;
+        }
+        .info-box {
+            border: 2px solid #0000FF;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            background-color: #f0f8ff;
+        }
+        .info-box strong {
+            color: royalblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Predicted Rank</h1>
+        <div class="info-box">
+            <p>Your final percentile is: <strong id="finalPercentile"></strong></p>
+            <p>Your predicted rank is: <strong id="predictedRank"></strong></p>
+        </div>
+        <button class="sarthi-btn" onclick="window.location.href='chat.html';">Go to Sarthi</button>
+    </div>
+
+    <script>
+        // Function to get URL parameters
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const queries = queryString.split("&");
+            queries.forEach(function(query) {
+                const [key, value] = query.split("=");
+                params[key] = decodeURIComponent(value);
+            });
+            return params;
+        }
+
+        const params = getQueryParams();
+
+        // Parse input values as numbers
+        const boardPercentile = parseFloat(params.board);
+        const gujcetPercentile = parseFloat(params.gujcet);
+
+        // Calculate the final percentile
+        const finalPercentile = (0.6 * boardPercentile) + (0.4 * gujcetPercentile);
+        document.getElementById('finalPercentile').textContent = finalPercentile.toFixed(2); // Display final percentile
+
+        // Calculate the predicted rank
+        const predictedRank = calculateRank(finalPercentile);
+        document.getElementById('predictedRank').textContent = predictedRank;
+
+        function calculateRank(finalPercentile) {
+            let rank;
+            if (finalPercentile >= 99 && finalPercentile <= 100) {
+                rank = Math.floor(Math.random() * 400) + 1;  // Rank between 1 and 400
+            } else if (finalPercentile >= 98 && finalPercentile < 99) {
+                rank = Math.floor(Math.random() * 400) + 401;  // Rank between 401 and 800
+            } else if (finalPercentile >= 97 && finalPercentile < 98) {
+                rank = Math.floor(Math.random() * 400) + 801;  // Rank between 801 and 1200
+            } else if (finalPercentile >= 96 && finalPercentile < 97) {
+                rank = Math.floor(Math.random() * 400) + 1201;  // Rank between 1201 and 1600
+            } else if (finalPercentile >= 95 && finalPercentile < 96) {
+                rank = Math.floor(Math.random() * 400) + 1601;  // Rank between 1601 and 2000
+            } else if (finalPercentile >= 94 && finalPercentile < 95) {
+                rank = Math.floor(Math.random() * 400) + 2001;  // Rank between 2001 and 2400
+            } else if (finalPercentile >= 93 && finalPercentile < 94) {
+                rank = Math.floor(Math.random() * 400) + 2401;  // Rank between 2401 and 2800
+            } else if (finalPercentile >= 92 && finalPercentile < 93) {
+                rank = Math.floor(Math.random() * 400) + 2801;  // Rank between 2801 and 3200
+            } else if (finalPercentile >= 91 && finalPercentile < 92) {
+                rank = Math.floor(Math.random() * 400) + 3201;  // Rank between 3201 and 3600
+            } else if (finalPercentile >= 90 && finalPercentile < 91) {
+                rank = Math.floor(Math.random() * 400) + 3601;  // Rank between 3601 and 4000
+            } else if (finalPercentile >= 89 && finalPercentile < 90) {
+                rank = Math.floor(Math.random() * 400) + 4001;  // Rank between 4001 and 4400
+            } else if (finalPercentile >= 88 && finalPercentile < 89) {
+                rank = Math.floor(Math.random() * 400) + 4401;  // Rank between 4401 and 4800
+            } else if (finalPercentile >= 87 && finalPercentile < 88) {
+                rank = Math.floor(Math.random() * 400) + 4801;  // Rank between 4801 and 5200
+            } else if (finalPercentile >= 86 && finalPercentile < 87) {
+                rank = Math.floor(Math.random() * 400) + 5201;  // Rank between 5201 and 5600
+            } else if (finalPercentile >= 85 && finalPercentile < 86) {
+                rank = Math.floor(Math.random() * 400) + 5601;  // Rank between 5601 and 6000
+            } else if (finalPercentile >= 84 && finalPercentile < 85) {
+                rank = Math.floor(Math.random() * 400) + 6001;  // Rank between 6001 and 6400
+            } else if (finalPercentile >= 83 && finalPercentile < 84) {
+                rank = Math.floor(Math.random() * 400) + 6401;  // Rank between 6401 and 6800
+            } else if (finalPercentile >= 82 && finalPercentile < 83) {
+                rank = Math.floor(Math.random() * 400) + 6801;  // Rank between 6801 and 7200
+            } else if (finalPercentile >= 81 && finalPercentile < 82) {
+                rank = Math.floor(Math.random() * 400) + 7201;  // Rank between 7201 and 7600
+            } else if (finalPercentile >= 80 && finalPercentile < 81) {
+                rank = Math.floor(Math.random() * 400) + 7601;  // Rank between 7601 and 8000
+            } else if (finalPercentile >= 79 && finalPercentile < 80) {
+                rank = Math.floor(Math.random() * 500) + 8001;   // Rank between 8001 and 8500
+            } else if (finalPercentile >= 78 && finalPercentile < 79) {
+                rank = Math.floor(Math.random() * 500) + 8501;   // Rank between 8501 and 9000
+            } else if (finalPercentile >= 77 && finalPercentile < 78) {
+                rank = Math.floor(Math.random() * 500) + 9001;   // Rank between 9001 and 9500
+            } else if (finalPercentile >= 76 && finalPercentile < 77) {
+                rank = Math.floor(Math.random() * 500) + 9501;   // Rank between 9501 and 10000
+            } else if (finalPercentile >= 75 && finalPercentile < 76) {
+                rank = Math.floor(Math.random() * 500) + 10001;  // Rank between 10001 and 10500
+            } else if (finalPercentile >= 74 && finalPercentile < 75) {
+                rank = Math.floor(Math.random() * 500) + 10501;  // Rank between 10501 and 11000
+            } else if (finalPercentile >= 73 && finalPercentile < 74) {
+                rank = Math.floor(Math.random() * 500) + 11001;  // Rank between 11001 and 11500
+            } else if (finalPercentile >= 72 && finalPercentile < 73) {
+                rank = Math.floor(Math.random() * 500) + 11501;  // Rank between 11501 and 12000
+            } else if (finalPercentile >= 71 && finalPercentile < 72) {
+                rank = Math.floor(Math.random() * 500) + 12001;  // Rank between 12001 and 12500
+            } else if (finalPercentile >= 70 && finalPercentile < 71) {
+                rank = Math.floor(Math.random() * 500) + 12501;  // Rank between 12501 and 13000
+            } else if (finalPercentile >= 69 && finalPercentile < 70) {
+                rank = Math.floor(Math.random() * 600) + 13001;   // Rank between 13001 and 13600
+            } else if (finalPercentile >= 68 && finalPercentile < 69) {
+                rank = Math.floor(Math.random() * 600) + 13601;   // Rank between 13601 and 14200
+            } else if (finalPercentile >= 67 && finalPercentile < 68) {
+                rank = Math.floor(Math.random() * 600) + 14201;   // Rank between 14201 and 14800
+            } else if (finalPercentile >= 66 && finalPercentile < 67) {
+                rank = Math.floor(Math.random() * 600) + 14801;   // Rank between 14801 and 15400
+            } else if (finalPercentile >= 65 && finalPercentile < 66) {
+                rank = Math.floor(Math.random() * 600) + 15401;   // Rank between 15401 and 16000
+            } else if (finalPercentile >= 64 && finalPercentile < 65) {
+                rank = Math.floor(Math.random() * 600) + 16001;   // Rank between 16001 and 16600
+            } else if (finalPercentile >= 63 && finalPercentile < 64) {
+                rank = Math.floor(Math.random() * 600) + 16601;   // Rank between 16601 and 17200
+            } else if (finalPercentile >= 62 && finalPercentile < 63) {
+                rank = Math.floor(Math.random() * 600) + 17201;   // Rank between 17201 and 17800
+            } else if (finalPercentile >= 61 && finalPercentile < 62) {
+                rank = Math.floor(Math.random() * 600) + 17801;   // Rank between 17801 and 18400
+            } else if (finalPercentile >= 60 && finalPercentile < 61) {
+                rank = Math.floor(Math.random() * 600) + 18401;   // Rank between 18401 and 19000
+            } else if (finalPercentile >= 59 && finalPercentile < 60) {
+                rank = Math.floor(Math.random() * 800) + 19001;    // Rank between 19001 and 19800
+            } else if (finalPercentile >= 58 && finalPercentile < 59) {
+                rank = Math.floor(Math.random() * 800) + 19801;    // Rank between 19801 and 20600
+            } else if (finalPercentile >= 57 && finalPercentile < 58) {
+                rank = Math.floor(Math.random() * 800) + 20601;    // Rank between 20601 and 21400
+            } else if (finalPercentile >= 56 && finalPercentile < 57) {
+                rank = Math.floor(Math.random() * 800) + 21401;    // Rank between 21401 and 22200
+            } else if (finalPercentile >= 55 && finalPercentile < 56) {
+                rank = Math.floor(Math.random() * 800) + 22201;    // Rank between 22201 and 23000
+            } else if (finalPercentile >= 54 && finalPercentile < 55) {
+                rank = Math.floor(Math.random() * 800) + 23001;    // Rank between 23001 and 23800
+            } else if (finalPercentile >= 53 && finalPercentile < 54) {
+                rank = Math.floor(Math.random() * 800) + 23801;    // Rank between 23801 and 24600
+            } else if (finalPercentile >= 52 && finalPercentile < 53) {
+                rank = Math.floor(Math.random() * 800) + 24601;    // Rank between 24601 and 25400
+            } else if (finalPercentile >= 51 && finalPercentile < 52) {
+                rank = Math.floor(Math.random() * 800) + 25401;    // Rank between 25401 and 26200
+            } else if (finalPercentile >= 50 && finalPercentile < 51) {
+                rank = Math.floor(Math.random() * 800) + 26201;    // Rank between 26201 and 27000
+            } else if (finalPercentile >= 49 && finalPercentile < 50) {
+                rank = Math.floor(Math.random() * 600) + 27001;    // Rank between 27001 and 27600
+            } else if (finalPercentile >= 48 && finalPercentile < 49) {
+                rank = Math.floor(Math.random() * 600) + 27601;    // Rank between 27601 and 28200
+            } else if (finalPercentile >= 47 && finalPercentile < 48) {
+                rank = Math.floor(Math.random() * 600) + 28201;    // Rank between 28201 and 28800
+            } else if (finalPercentile >= 46 && finalPercentile < 47) {
+                rank = Math.floor(Math.random() * 600) + 28801;    // Rank between 28801 and 29400
+            } else if (finalPercentile >= 45 && finalPercentile < 46) {
+                rank = Math.floor(Math.random() * 600) + 29401;    // Rank between 29401 and 30000
+            } else if (finalPercentile >= 44 && finalPercentile < 45) {
+                rank = Math.floor(Math.random() * 600) + 30001;    // Rank between 30001 and 30600
+            } else if (finalPercentile >= 43 && finalPercentile < 44) {
+                rank = Math.floor(Math.random() * 600) + 30601;    // Rank between 30601 and 31200
+            } else if (finalPercentile >= 42 && finalPercentile < 43) {
+                rank = Math.floor(Math.random() * 600) + 31201;    // Rank between 31201 and 31800
+            } else if (finalPercentile >= 41 && finalPercentile < 42) {
+                rank = Math.floor(Math.random() * 600) + 31801;    // Rank between 31801 and 32400
+            } else if (finalPercentile >= 40 && finalPercentile < 41) {
+                rank = Math.floor(Math.random() * 600) + 32401;    // Rank between 32401 and 33000
+            }
+            return rank;
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rank Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f0f0f5;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+      }
+      .container {
+          text-align: center;
+          margin: 2rem;
+      }
+      h1 {
+        font-size: 3rem;
+        margin-right: -5px;
+        margin-bottom: 2rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        font-weight: bold;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+    
+      .marks-section {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 2rem;
+          gap: 1rem;
+      }
+      .marks-column {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 5px solid royalblue;
+        padding: 1.5rem;
+        border-radius: 20px;
+        flex: 1;
+        width: 545px;
+      }
+    
+      .marks-column h2 {
+          font-size: 2rem;
+          color: royalblue;
+          margin-bottom: 1rem;
+      }
+      input[type="number"] {
+          width: 100%;
+          padding: 1rem;
+          margin: 1rem 0;
+          border: 2px solid #0000FF;
+          border-radius: 20px;
+          font-size: 1.5rem;
+          color: #0000FF;
+          text-align: center;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        padding: 1rem;
+        margin: 1rem 0;
+        border: 2px solid #0000FF;
+        border-radius: 20px;
+        font-size: 1.5rem;
+        color: #0000FF;
+        text-align: center;
+    }
+      .calculate-btn {
+          background-color: #0000FF;
+          color: white;
+          padding: 1rem 2rem;
+          font-size: 1.5rem;
+          border: none;
+          border-radius: 20px;
+          cursor: pointer;
+          margin-top: 1rem;
+      }
+      .calculate-btn:hover {
+        background-color: #66B2FF;
+        color: #ffffff;
+        border: 4px solid black;
+        transform: scale(1.05);
+        transition: background-color 0.3s, transform 0.3s;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+      <h1>Know Your Rank</h1>
+      <form id="rankForm">
+          <div class="marks-section">
+              <div class="marks-column">
+                  <h2>Board Details</h2>
+                  <input type="number"  name="physics_board_mark" placeholder="Enter Physics Mark" min="0" max="100" required>
+                  <input type="number"  name="chemistry_board_mark" placeholder="Enter Chemistry Mark" min="0" max="100" required>
+                  <input type="number"  name="maths_board_mark" placeholder="Enter Maths Mark" min="0" max="100" required>
+                  <input type="text" id="boardPercentile" name="board_percentile" placeholder="Enter Board Percentile" pattern="^\d+(\.\d{1,2})?$" title="Enter a valid percentile (e.g., 85.5)" required>
+              </div>
+              <div class="marks-column">
+                  <h2>GUJCET Details</h2>
+                  <input type="number" name="physics_gujcet_mark" placeholder="Enter Physics Mark" min="0" max="40" required>
+                  <input type="number" name="chemistry_gujcet_mark" placeholder="Enter Chemistry Mark" min="0" max="40" required>
+                  <input type="number" name="maths_gujcet_mark" placeholder="Enter Maths Mark" min="0" max="40" required>
+                  <input type="text" id="gujcetPercentile" name="gujcet_percentile" placeholder="Enter GUJCET Percentile" pattern="^\d+(\.\d{1,2})?$" title="Enter a valid percentile (e.g., 90.25)" required>
+              </div>
+          </div>
+          <button class="calculate-btn" type="submit">CALCULATE</button>
+      </form>
+  </div>
+
+  <script>
+    document.getElementById('rankForm').addEventListener('submit', function(event) {
+        event.preventDefault();  
+
+        // Get input values
+        const boardPercentile = document.getElementById('boardPercentile').value;
+        const gujcetPercentile = document.getElementById('gujcetPercentile').value;
+
+        // Validation to ensure no value exceeds 100
+        if (boardPercentile > 100 || gujcetPercentile > 100) {
+            alert('Percentiles cannot exceed 100!');
+            return; // Stop form submission
+        }
+
+        // Redirect to result.html with only board and gujcet percentiles in URL parameters
+        window.location.href = `result.html?board=${boardPercentile}&gujcet=${gujcetPercentile}`;
+    });
+  </script>
+</body>
+</html>

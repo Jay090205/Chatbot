@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | ChatBot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fc;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-us-section {
+            padding: 60px 0;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #4169e1;
+            margin-bottom: 10px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        header h1:hover {
+            color: #6a5acd;
+            transform: scale(1.1);
+            text-decoration: underline;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .about-content .text-content {
+            width: 50%;
+        }
+
+        .about-content .text-content h2 {
+            font-size: 2rem;
+            color: #4169e1;
+            margin-bottom: 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .about-content .text-content h2:hover {
+            color: #6a5acd;
+            text-decoration: underline;
+            transform: scale(1.1);
+        }
+
+        .about-content .text-content p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .about-content .image-content {
+            width: 40%;
+        }
+
+        .about-content .image-content img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .about-content .image-content img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .mission h2 {
+            font-size: 2rem;
+            color: #4169e1;
+            margin-bottom: 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .mission h2:hover {
+            color: #6a5acd;
+            text-decoration: underline;
+            transform: scale(1.1);
+        }
+
+        .mission p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .home-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            padding: 10px 20px;
+            background-color: #4169e1;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background-color: #3658a0;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content .text-content, .about-content .image-content {
+                width: 100%;
+            }
+
+            .team-member {
+                width: 150px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="about-us-section">
+        <div class="container">
+            <header>
+                <h1>About Us</h1>
+            </header>
+
+            <div class="about-content">
+                <div class="text-content">
+                    <h2>Who We Are</h2>
+                    <p>We are a group of students passionate about simplifying the college selection process. Our team is working on creating a chatbot that provides 12th-grade students with quick and accurate information about engineering colleges in Gujarat, including cutoffs, opening and closing ranks, and campus details. We aim to make college research easier and less time-consuming for students.</p>
+                    
+                    <h2>Our Mission</h2>
+                    <p>Our mission is to create an intuitive chatbot that provides 12th-grade students with real-time, accurate information about engineering colleges in Gujarat, including cutoffs, ranks, and locations. We aim to simplify the college selection process by making this data easily accessible, helping students make informed decisions quickly and efficiently. Our goal is to save time, reduce stress, and streamline the college research process for every student.</p>
+                </div>                               
+                <div class="image-content">
+                    <img src="https://miro.medium.com/v2/resize:fit:612/1*C_LFPy6TagD1SEN5SwmVRQ.jpeg" alt="Chatbot illustration">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <button class="home-btn" onclick="window.location.href='/';">Home</button>
+</body>
+</html>

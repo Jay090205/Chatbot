@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #f0f0f5;
+            padding: 50px;
+            border: 5px solid #0000FF;
+            border-radius: 10px;
+            text-align: center;
+            width: 100%; /* Set width to 100% */
+            max-width: 600px; /* Set a max width for larger screens */
+        }
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #0000FF;
+            margin-bottom: 40px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 20px;
+            margin: 10px 0;
+            border: 2px solid #0000ff;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            color: #0000ff;
+            text-align: center;
+        }
+        .login-btn {
+            background-color: #0000ff;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .login-btn:hover {
+            background-color: #0000cc;
+        }
+        img {
+            margin-left: -106px;
+            width: 50%;
+            height: 100%;
+            margin-right:70px;
+        }
+    </style>
+</head>
+<body>
+    <img src="https://miro.medium.com/v2/resize:fit:612/1*C_LFPy6TagD1SEN5SwmVRQ.jpeg" alt="Logo">
+    <div class="login-container">
+        <h1>LOGIN</h1>
+        <form method="post" action="{{url_for('login')}}">
+        <input type="text" name="username" placeholder="Enter your username">
+        <br>
+        <input type="password" name="password" placeholder="Enter your Password">
+        <br>
+        <br>
+        <button class="login-btn" type="submit">Login</button>
+        <br>
+        <br>
+        <p>New User? <a href="{{url_for('signup')}}">SignUp Here </a></p>
+        </form>
+    </div>
+</body>
+</html>

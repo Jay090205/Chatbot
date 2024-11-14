@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>chatbot</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        background-color: #f0f0f0;
+        color: #333;
+        display: flex;
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        display: flex;
+        width: 100%;
+        height: 100%;
+      }
+
+      .sidebar {
+        background-color: #1e1e1e;
+        width: 200px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      
+      .new-chat-btn {
+        background-color: #007bff; /* Initial background color */
+        color: #fff;               /* Text color */
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+      }
+      
+      /* Hover effect */
+      .new-chat-btn:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+      }
+      
+
+      .settings button {
+        background-color: transparent;
+        color: #b0b0b0;
+        border: none;
+        cursor: pointer;
+        margin: 10px 0;
+      }
+
+      .settings button:hover {
+        color: #0056b3;
+      }
+
+      .main-content {
+        flex: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: white;
+        border-left: 1px solid #ccc;
+      }
+
+      .main-content h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #0056b3;
+      }
+
+      .chat-area {
+        flex: 1;
+        overflow-y: auto;
+        margin-top: 20px;
+        padding: 10px;
+        width: 80%;
+        margin: 0 auto;
+      }
+
+      .message-container {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        padding: 10px;
+      }
+
+      .avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+      }
+
+      /* Styles for user message */
+      .user-message {
+        display: flex;
+        flex-direction: row-reverse; /* Reverses the alignment */
+        align-items: center;
+        margin-left: auto;
+        text-align: right;
+      }
+
+      /* Avatar on the right side for user */
+      .user-message .avatar {
+        margin-left: 10px;
+        margin-right: 0;
+      }
+
+      /* Styles for bot message */
+      .bot-message {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+      }
+
+      /* Avatar on the left side for bot */
+      .bot-message .avatar {
+        margin-right: 10px;
+      }
+
+      .message-content {
+        max-width: 75%;
+        padding: 10px;
+        border-radius: 15px;
+        word-wrap: break-word;
+        position: relative;
+        background-color: #f6f6f6;
+        border: 3px solid cornflowerblue;
+      }
+
+      .msg_time_send {
+        position: absolute;
+        bottom: -20px;
+        right: 10px;
+        font-size: 0.8em;
+        color: black;
+      }
+
+      .prompt-form {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .prompt-form input[type="text"] {
+        width: 80%;
+        padding: 10px;
+        border: 1px solid #007bff;
+        background-color: transparent;
+        color: #333;
+        border-radius: 5px;
+      }
+
+      .prompt-form input[type="text"]::placeholder {
+        color: #aaa;
+      }
+
+      .prompt-form button {
+        background-color: royalblue;
+        color: white;
+        border: none;
+        font-size: 20px;
+        padding: 10px 20px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 20px;
+        border: 3px solid black;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease,
+          transform 0.3s ease;
+      }
+
+      .prompt-form button:hover {
+        background-color: #0066cc;
+        border: none;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        transform: scale(1.05);
+      }
+
+      .settings button {
+        background-color: transparent;
+        color: #b0b0b0;
+        border: none;
+        cursor: pointer;
+        margin: 10px 0;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+      
+      .settings button:hover {
+        color: #007bff; /* Change to a bright blue color */
+        transform: scale(1.05); /* Slightly enlarge the button on hover */
+      }
+      
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <button class="new-chat-btn">New chat</button>
+        <div class="settings">
+          <button class="light-mode">Dark mode</button>
+          <br>
+          <button class="logout" onclick="window.location.href='/';">Log out</button>
+        </div>
+      </aside>
+      <main class="main-content">
+        <h1>Sarthi</h1>
+        <div class="chat-area" id="chat-area">
+          <!-- Chat messages will appear here -->
+        </div>
+
+        <div class="prompt-form" id="messageArea">
+          <input
+            type="text"
+            id="user-input"
+            placeholder="Enter your prompt here..."
+          />
+          <button id="submit-button">Submit</button>
+        </div>
+      </main>
+    </div>
+
+    <script>
+      $(document).ready(function () {
+
+        $(".new-chat-btn").on("click", function () {
+          $("#chat-area").empty(); // Clear all chat messages
+          $("#user-input").val(""); // Clear the input field if needed
+        });
+
+        // Dark mode button click event
+        $(".light-mode").on("click", function () {
+          // Redirect to bot.html when dark mode is clicked
+          window.location.href = "bot.html";
+        });
+
+        // Rest of your existing code...
+        $("#submit-button").on("click", function () {
+          const date = new Date();
+          const hour = date.getHours();
+          const minute = date.getMinutes();
+          const str_time = hour + ":" + (minute < 10 ? "0" + minute : minute);
+
+          var rawText = $("#user-input").val().trim();
+
+          if (rawText) {
+            var userHtml = `
+						<div class="message-container user-message">
+							<img src="https://i.ibb.co/d5b84Xw/Untitled-design.png" alt="Avatar" class="avatar">
+							<div class="message-content">
+								${rawText}
+								<span class="msg_time_send">${str_time}</span>
+							</div>
+						</div>`;
+
+            $("#user-input").val("");
+            $("#chat-area").append(userHtml);
+
+            // Simulate a bot response (for demonstration purposes)
+            $.ajax({
+              data: {
+                msg: rawText,
+              },
+              type: "POST",
+              url: "/get",
+            }).done(function (data) {
+              var botHtml = `
+							<div class="message-container bot-message">
+								<img src="data:image/png;base64,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" alt="Avatar" class="avatar">
+								<div class="message-content">
+									Bot: ${data}
+									<span class="msg_time_send">${str_time}</span>
+								</div>
+							</div>`;
+              $("#chat-area").append(botHtml);
+              $("#chat-area").scrollTop($("#chat-area")[0].scrollHeight);
+            });
+          }
+        });
+
+        $("#user-input").on("keypress", function (event) {
+          if (event.key === "Enter") {
+            $("#submit-button").click();
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
