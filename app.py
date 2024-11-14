@@ -34,7 +34,7 @@ chain = RetrievalQA.from_chain_type(
     chain_type_kwargs=chain_type_kwargs)
 
 try:
-    client = MongoClient('mongodb+srv://testuser:fs8fkJWEzZle2dQS@cluster0.p44e4.mongodb.net/')  # Local MongoDB connection
+    client = MongoClient('')  # Local MongoDB connection
     db = client['Sarthi']
     users_collection = db['User']
     print("MongoDB connected successfully!")
